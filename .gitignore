@@ -1,5 +1,6 @@
 resultats/*.txt
 env/
+env_mac/
 .DS_Store
 .DS_Store
 .ipynb_checkpoints/Chapter 2 - First steps-checkpoint.ipynb
