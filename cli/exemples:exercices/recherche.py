@@ -10,7 +10,7 @@ def parser_reponse_isidore(data):
     """ Fait une recherche sur Isidore
 
     :param data: JSON Parsed Data
-    :type data: dict       # code de thibaut appelait ce param "q", ça doit être une erreur
+    :type data: dict     # code de thibaut appelait ce param "q", ça doit être une erreur
     :returns: Tuple (
         Nombre de Résultats,
         Nombre de Pages,
@@ -21,7 +21,7 @@ def parser_reponse_isidore(data):
     nb_items = int(data["response"]["replies"]["meta"]["@items"])
     # On récupère le nombre de résultats par page
     items_per_page = int(data["response"]["replies"]["meta"]["@pageItems"])
-    # Le nombre total de page est l'arrondi supérieur de la division nb_items / items_per_page
+    # Le nombre total de pages est l'arrondi supérieur de la division nb_items / items_per_page
     total_page = math.ceil(nb_items / items_per_page)
 
     # On crée une liste vide dans laquelle on enregistrera les données
@@ -89,35 +89,17 @@ def cherche_isidore(q, full=False, page=1):
     return nb_items, total_page, items, next_page
 
 
-# moi : ce code n'est pas présent dans le code de jupyter chapitre 5 (document "recherche.py")
+# moi : mon code pour l'exo chapitre 5
 @click.group()
-def mon_groupe():
-    """ Groupes de commandes pour communiquer avec Isidore"""
+def group():
 
-
-@mon_groupe.command("search")
-@click.argument("query", type=str)
-@click.option("-f", "--full",  is_flag=True, default=False,
-              help="Browse every page of results")
-@click.option("-o", "--output", "output_file", type=click.File(mode="w"), default=None,
-              help="File in which to write, in a CSV manner, the results")
-def run(query, full, output_file):
-    """ Exécute une recherche sur Isidore.science en utilisant [QUERY]
+@group.command()
+def run():
+    """ Commande que l'on mettra comme commande principale
     """
-    nb_items, total_page, items, next_page = cherche_isidore(query, full=full)
-    print("Nombre de résultats : {}".format(nb_items))
-    print("Nombre de résultats affichés : {}".format(len(items)))
-    for item in items:
-        print("{}; {}".format(item["title"], "& ".join(item["author"])))
+    print("Commande exécutée !")
 
-    if output_file:
-        writer = csv.writer(output_file)
-        writer.writerow(["date", "title", "author", "uri"])
-        for item in items:
-            writer.writerow([item["date"], item["title"], ", ".join(item["author"]), item["uri"]])
-
-
-# Si ce fichier est le fichier executé directement par python
+# Si ce fichier est le fichier exécuté directement par python
 # Alors on exécute la commande
 if __name__ == "__main__":
-    mon_groupe()
+        run()
