@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{nom_site}}</title>
+</head>
+<body>
+<h1>Bienvenue !</h1>
+    <p>Ceci est ma première application Web<p>
+    <p>Page : {{page}}</p>
+    <p>mon prénom est {{prenom}} et mon petit chien s'appelle {{chien}}</p>
+    <p>
+        {% if chiens %}
+            notre liste contient {{chiens|length}} chiens. voici le premier d'ailleurs : {{chiens[0].nom}}.
+        {% else %}
+            Il n'y a pas de petits chiens dans cette base pour le moment.
+        {% endif %}
+    </p>
+
+</body>
+</html>

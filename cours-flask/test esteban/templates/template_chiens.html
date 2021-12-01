@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chien{% if chien %} : {{ chien.nom }}{% endif %}</title>
+</head>
+<body>
+<h1>Bienvenue !</h1>
+    <p>Ceci est ma première application Web<p>
+    <p>Page : {{page}}</p>
+    <p>
+        {% if chien %}
+            Bienvenue sur la page personnelle de {{ chien.nom }}, un de mes chiens.
+            Il est de nationalité {{ chien.nationalité }}, et composé des couleurs suivantes : {{ chien.couleurs }}
+        {% else %}
+            Il n'y a pas de petits chiens dans cette base pour le moment.
+        {% endif %}
+    </p>
+
+</body>
+</html>

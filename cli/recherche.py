@@ -3,6 +3,8 @@ import requests
 import math
 import csv
 
+# Code Isidore incomplet
+
 ISIDORE = "https://api.isidore.science/resource/search"
 
 
@@ -89,17 +91,20 @@ def cherche_isidore(q, full=False, page=1):
     return nb_items, total_page, items, next_page
 
 
-# moi : mon code pour l'exo chapitre 5
-@click.group()
-def group():
-
-@group.command()
-def run():
-    """ Commande que l'on mettra comme commande principale
+# moi : mon code pour l'exo chapitre 5 (je copie cole)
+@click.command()
+@click.argument("query", type=str)
+def run(query):
+    """ Exécute une recherche sur Isidore.science en utilisant [QUERY]
     """
-    print("Commande exécutée !")
+    nb_items, total_page, items, next_page = cherche_isidore(query)
+    print("Nombre de résultats : {}".format(nb_items))
+    print("Nombre de résultats affichés : {}".format(len(items)))
+    for item in items:
+        print("{}; {}".format(item["title"], "& ".join(item["author"])))
+
 
 # Si ce fichier est le fichier exécuté directement par python
 # Alors on exécute la commande
 if __name__ == "__main__":
-        run()
+    run()

@@ -6,7 +6,7 @@
         <h1>Bienvenue !</h1>
         <p>
             {% if lieux %}
-                Il y a {{ lieux|length }} enregistrés , voici le premier : {{lieux[0]}}
+                Il y a {{ lieux|length }} lieux enregistrés , voici le premier : {{lieux[0]}}
             {% else %}
                 La base de données est en cours de constitution
             {% endif %}
